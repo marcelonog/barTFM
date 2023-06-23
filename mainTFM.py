@@ -8,38 +8,11 @@ Created on Mon May 22 16:09:02 2023
 
 import streamlit as st
 import pandas as pd
+import json
 from st_aggrid import AgGrid, GridUpdateMode, JsCode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
+from funcsTFM import origen, explorar
 
-def origen():
-    # Agrega un componente para seleccionar el archivo
-    file = st.file_uploader('Explorar', type=["csv", "xlsx"])
-    return file
-
-
-def explorar(file):
-    """ 
-    df_types = pd.DataFrame(data.dtypes, 
-                            columns=['Tipo Dato'])
-    numerical_cols = df_types[~df_types['Tipo Dato'].isin(['object',
-                'bool'])].index.values
-
-    df_types['Count'] = data.count()
-    df_types['Valores Unicos'] = data.nunique()
-    df_types['Min'] = data[numerical_cols].min()
-    df_types['Máx'] = data[numerical_cols].max()
-    df_types['Promedio'] = data[numerical_cols].mean()
-    df_types['Mediana'] = data[numerical_cols].median()
-    df_types['Dev.Std.'] = data[numerical_cols].std()
-    df_types = pd.DataFrame(data)
-    return df_types.astype(str)
-    """    
-    if file:
-        # Lee el archivo seleccionado
-        df = pd.read_csv(file) if file.name.endswith('csv') else pd.read_excel(file)
-        return df
-
-            
 
 st.header("ETL")
 # Crear el menú de tipo sidebar
